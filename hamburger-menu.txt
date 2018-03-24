@@ -1,0 +1,113 @@
+HTML
+<div class="hamburger-menu-wrapper">
+   <button class="hamburger-menu"> <span>toggle menu</span> </button>
+</div>
+
+CSS
+@media(max-width: 767px){
+.hamburger-menu-wrapper {
+        /*    margin: 2px 0;*/
+        margin-right: 15px;
+        background: #323232;
+        padding: 7px;
+        display: inline-block;
+        float: right;
+    }
+.hamburger-menu {
+        border: 0;
+        margin: 0 auto;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        font-size: 0;
+        text-indent: -9999px;
+        cursor: pointer;
+        z-index: 9999;
+        cursor: pointer;
+        background: transparent;
+    }
+.hamburger-menu:focus {
+        outline: none;
+    }
+
+    .hamburger-menu span {
+        display: block;
+        position: absolute;
+        top: 17px;
+        left: 5px;
+        right: 5px;
+        height: 2px;
+        background: #02D5FD;
+    }
+
+    .hamburger-menu span:before,
+    .hamburger-menu span:after {
+        position: absolute;
+        display: block;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #02D5FD;
+        content: "";
+    }
+
+    .hamburger-menu span:before {
+        top: -7px;
+    }
+
+    .hamburger-menu span:after {
+        bottom: -7px;
+    }
+
+    .hamburger-menu span:before,
+    .hamburger-menu span:after {
+        transition-duration: 0.3s, 0.3s;
+        transition-delay: 0.3s, 0s;
+    }
+
+    .hamburger-menu span:before {
+        transition-property: top, transform;
+    }
+
+    .hamburger-menu span::after {
+        transition-property: bottom, transform;
+    }
+
+    .hamburger-menu.active span {
+        background: none;
+    }
+
+    .hamburger-menu.active span:before {
+        top: 0;
+        transform: rotate(225deg);
+    }
+
+    .hamburger-menu.active span:after {
+        bottom: 0;
+        transform: rotate(135deg);
+    }
+}
+
+JQUERY
+$('.hamburger-menu-wrapper').click(function (e) {
+    e.preventDefault();
+    $('.mobile-header-nav').slideToggle();
+    $(this).toggleClass('open');
+});
+
+(function () {
+    'use strict';
+    $('.hamburger-menu').click(function (e) {
+        e.preventDefault();
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            $('.hamburger-menu-wrapper').toggleClass('bounce-effect');
+        } else {
+            $(this).addClass('active');
+            $('.hamburger-menu-wrapper').toggleClass('bounce-effect');
+        }
+    })
+})();
